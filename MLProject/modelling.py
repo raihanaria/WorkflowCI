@@ -1,7 +1,7 @@
 # ==========================================
 # Import Library
 # ==========================================
-
+import os
 import pandas as pd
 import mlflow
 import mlflow.sklearn
@@ -18,7 +18,8 @@ from sklearn.metrics import (
 
 from imblearn.over_sampling import SMOTE
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+if os.getenv("GITHUB_ACTIONS") != "true": 
+    mlflow.set_tracking_uri( "http://127.0.0.1:5000" )
 # ==========================================
 # Load Dataset
 # ==========================================
