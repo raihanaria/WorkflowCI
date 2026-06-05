@@ -1,4 +1,3 @@
-```python id="x3r4x0"
 # =========================================
 # IMPORT LIBRARIES
 # =========================================
@@ -197,4 +196,3 @@ mlflow.log_metric(
 
 
 print("\nModel berhasil disimpan ke MLflow")
-```
