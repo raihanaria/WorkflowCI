@@ -18,8 +18,8 @@ from sklearn.metrics import (
 
 from imblearn.over_sampling import SMOTE
 
-if os.getenv("GITHUB_ACTIONS") != "true": 
-    mlflow.set_tracking_uri( "http://127.0.0.1:5000" )
+#if os.getenv("GITHUB_ACTIONS") != "true": 
+#    mlflow.set_tracking_uri( "http://127.0.0.1:5000" )
 # ==========================================
 # Load Dataset
 # ==========================================
