@@ -88,12 +88,11 @@ mlflow.sklearn.autolog()
 # Start MLflow Run
 # ==========================================
 
-with mlflow.start_run():
+#with mlflow.start_run():
 
     # ==========================================
     # Training Model
     # ==========================================
-
     model = RandomForestClassifier(
         n_estimators=100,
         max_depth=5,
