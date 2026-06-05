@@ -1,8 +1,10 @@
+```python id="x3r4x0"
 # =========================================
 # IMPORT LIBRARIES
 # =========================================
 
 import pandas as pd
+
 import mlflow
 import mlflow.sklearn
 
@@ -17,6 +19,13 @@ from sklearn.metrics import (
 )
 
 from imblearn.over_sampling import SMOTE
+
+
+# =========================================
+# ENABLE AUTOLOG
+# =========================================
+
+mlflow.sklearn.autolog()
 
 
 # =========================================
@@ -43,7 +52,7 @@ print("Dataset preprocessing berhasil dimuat")
 
 
 # =========================================
-# CEK DISTRIBUSI CLASS
+# DISTRIBUSI CLASS SEBELUM SMOTE
 # =========================================
 
 print("\nDistribusi class sebelum SMOTE:")
@@ -70,22 +79,13 @@ print("\nSMOTE berhasil dilakukan")
 
 
 # =========================================
-# CEK DISTRIBUSI SETELAH SMOTE
+# DISTRIBUSI CLASS SETELAH SMOTE
 # =========================================
 
 print("\nDistribusi class setelah SMOTE:")
 
 print(
     pd.Series(y_train_smote).value_counts()
-)
-
-
-# =========================================
-# SET MLFLOW EXPERIMENT
-# =========================================
-
-mlflow.set_experiment(
-    "Heart_Disease_Classification"
 )
 
 
@@ -127,17 +127,20 @@ accuracy = accuracy_score(
 
 precision = precision_score(
     y_test,
-    y_pred
+    y_pred,
+    zero_division=0
 )
 
 recall = recall_score(
     y_test,
-    y_pred
+    y_pred,
+    zero_division=0
 )
 
 f1 = f1_score(
     y_test,
-    y_pred
+    y_pred,
+    zero_division=0
 )
 
 
@@ -162,33 +165,14 @@ print("\n=== Classification Report ===")
 print(
     classification_report(
         y_test,
-        y_pred
+        y_pred,
+        zero_division=0
     )
 )
 
 
 # =========================================
-# LOG PARAMETER
-# =========================================
-
-mlflow.log_param(
-    "n_estimators",
-    100
-)
-
-mlflow.log_param(
-    "max_depth",
-    10
-)
-
-mlflow.log_param(
-    "random_state",
-    42
-)
-
-
-# =========================================
-# LOG METRICS
+# LOG MANUAL METRICS
 # =========================================
 
 mlflow.log_metric(
@@ -212,13 +196,5 @@ mlflow.log_metric(
 )
 
 
-# =========================================
-# LOG MODEL
-# =========================================
-
-mlflow.sklearn.log_model(
-    sk_model=model,
-    artifact_path="model"
-)
-
 print("\nModel berhasil disimpan ke MLflow")
+```
