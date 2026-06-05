@@ -1,0 +1,15 @@
+name: heart-disease-mlflow
+
+conda_env: conda.yaml
+
+entry_points:
+
+  main:
+
+    parameters:
+
+      dataset:
+        type: string
+        default: "dataset_preprocessing/X_train.csv"
+
+    command: "python modelling.py"
