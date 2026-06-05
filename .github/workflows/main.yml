@@ -33,4 +33,5 @@ jobs:
 
       - name: Run MLflow Project
         run: |
+          cd heart_project
           mlflow run . --env-manager=local
