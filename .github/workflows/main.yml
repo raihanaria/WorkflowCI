@@ -11,26 +11,48 @@ on:
 
 jobs:
 
-  build:
+  train-model:
 
     runs-on: ubuntu-latest
 
     steps:
 
+      # Clone repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12.7"
 
-      - name: Install Dependencies
+      # Upgrade pip
+      - name: Upgrade pip
         run: |
           python -m pip install --upgrade pip
-          pip install mlflow
-          pip install setuptools
 
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+
+          pip install mlflow==2.14.3
+          pip install setuptools==70.0.0
+
+          pip install numpy==1.26.4
+          pip install pandas==2.2.2
+          pip install scikit-learn==1.5.1
+          pip install scipy==1.13.1
+
+          pip install imbalanced-learn==0.12.3
+
+          pip install matplotlib==3.9.0
+          pip install seaborn==0.13.2
+
+          pip install cloudpickle==3.1.0
+          pip install joblib==1.4.2
+
+      # Run MLflow Project
       - name: Run MLflow Project
         run: |
           cd heart_project
